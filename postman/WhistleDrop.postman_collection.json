@@ -1,0 +1,363 @@
+{
+  "info": {
+    "_postman_id": "whistledrop-collection-2026",
+    "name": "WhistleDrop — Confidential Reporting Platform API",
+    "description": "Production-grade Postman collection for WhistleDrop anonymous reporting, tracking, and moderator management endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "moderatorToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "caseCode",
+      "value": "WD-E3T7Y9B2",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Public Endpoints",
+      "item": [
+        {
+          "name": "Submit Anonymous Report",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.test(\"Case code is generated\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.success).to.be.true;",
+                  "    pm.expect(json.data.caseCode).to.match(/^WD-[A-Z0-9]{8}$/);",
+                  "    pm.collectionVariables.set(\"caseCode\", json.data.caseCode);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"SECURITY\",\n  \"description\": \"Identified an unauthenticated API endpoint exposing internal system diagnostic logs.\",\n  \"evidenceUrl\": \"https://security-notice.corp/advisory-01\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/reports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports"]
+            },
+            "description": "Submits an anonymous report without requiring any reporter credentials or identifying profile. Returns unique tracking case code."
+          },
+          "response": []
+        },
+        {
+          "name": "Track Report by Case Code",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Report data contains status history\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.success).to.be.true;",
+                  "    pm.expect(json.data.statusHistory).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/{{caseCode}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "{{caseCode}}"]
+            },
+            "description": "Retrieves the public tracking status, category, timestamps, and full moderator update history for a given case code."
+          },
+          "response": []
+        },
+        {
+          "name": "Track Report - Invalid Case Code (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404 Not Found\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test(\"Success flag is false\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.success).to.be.false;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/WD-NONEXISTENT",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "WD-NONEXISTENT"]
+            },
+            "description": "Demonstrates error handling when an unknown case code is requested."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Moderator Authentication",
+      "item": [
+        {
+          "name": "Moderator Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"JWT token received\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.success).to.be.true;",
+                  "    pm.expect(json.data.token).to.not.be.empty;",
+                  "    pm.collectionVariables.set(\"moderatorToken\", json.data.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"WhistleDrop2026!Secure\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Authenticates moderator credentials and issues a signed JWT Bearer token."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Moderator Protected Operations",
+      "item": [
+        {
+          "name": "Get Dashboard Statistics",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Stats structure returned\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.data.totalReports).to.be.a('number');",
+                  "    pm.expect(json.data.submittedCount).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{moderatorToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/moderator/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "moderator", "dashboard", "stats"]
+            },
+            "description": "Fetches aggregated analytics including status counts, category breakdown, and recent reports."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Paginated Reports (All)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{moderatorToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/moderator/reports?page=0&size=10&sortBy=createdAt&sortDir=desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "moderator", "reports"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" },
+                { "key": "sortBy", "value": "createdAt" },
+                { "key": "sortDir", "value": "desc" }
+              ]
+            },
+            "description": "Lists reports with pagination and sorting."
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Reports by Category & Status",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{moderatorToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/moderator/reports?category=SECURITY&status=UNDER_REVIEW",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "moderator", "reports"],
+              "query": [
+                { "key": "category", "value": "SECURITY" },
+                { "key": "status", "value": "UNDER_REVIEW" }
+              ]
+            },
+            "description": "Filters reports dynamically using JPA specifications."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Report Details (Full)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{moderatorToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/moderator/reports/{{caseCode}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "moderator", "reports", "{{caseCode}}"]
+            },
+            "description": "Fetches complete report details including description, evidence URL, and status updates."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Report Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Status updated to UNDER_REVIEW\", function () {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.data.status).to.equal(\"UNDER_REVIEW\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{moderatorToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"UNDER_REVIEW\",\n  \"message\": \"Assigned to specialized security triage team for review.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/moderator/reports/{{caseCode}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "moderator", "reports", "{{caseCode}}", "status"]
+            },
+            "description": "Transitions report status and records an immutable status update entry."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

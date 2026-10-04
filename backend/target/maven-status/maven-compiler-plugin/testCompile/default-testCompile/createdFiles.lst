@@ -1,0 +1,8 @@
+com\whistledrop\service\ReportServiceTest.class
+com\whistledrop\controller\ModeratorReportControllerTest.class
+com\whistledrop\security\SecurityIntegrationTest.class
+com\whistledrop\util\CaseCodeGeneratorTest.class
+com\whistledrop\WhistleDropApplicationTests.class
+com\whistledrop\controller\AuthControllerTest.class
+com\whistledrop\controller\PublicReportControllerTest.class
+com\whistledrop\service\ModeratorServiceTest.class

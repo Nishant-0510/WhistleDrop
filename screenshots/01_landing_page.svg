@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="blue-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="700" fill="url(#bg-grad)"/>
+
+  <!-- Top Navigation Bar -->
+  <rect width="1200" height="70" fill="#0f172a" fill-opacity="0.8" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="60" cy="35" r="16" fill="#2563eb"/>
+  <path d="M54 35 L58 39 L66 31" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="88" y="41" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="800" font-size="20" letter-spacing="1">WHISTLEDROP</text>
+  
+  <text x="780" y="41" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="14">Track Report</text>
+  <text x="900" y="41" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="14">Moderator Portal</text>
+  <rect x="1030" y="18" width="120" height="34" rx="8" fill="#2563eb"/>
+  <text x="1055" y="40" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="600" font-size="13">Report Concern</text>
+
+  <!-- Hero Section -->
+  <!-- Privacy Pill -->
+  <rect x="420" y="120" width="360" height="36" rx="18" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="442" cy="138" r="6" fill="#10b981"/>
+  <text x="458" y="143" fill="#cbd5e1" font-family="'Inter', sans-serif" font-weight="500" font-size="13">Anonymous by design • No account required</text>
+
+  <!-- Hero Title -->
+  <text x="600" y="210" text-anchor="middle" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="800" font-size="44" letter-spacing="-0.5">Your Voice. Your Privacy.</text>
+  <text x="600" y="250" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="400" font-size="16">
+    A confidential reporting platform that lets you raise concerns without creating an account or revealing your identity.
+  </text>
+
+  <!-- Hero Buttons -->
+  <rect x="420" y="290" width="165" height="46" rx="10" fill="#2563eb"/>
+  <text x="442" y="318" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="600" font-size="14">Report a Concern →</text>
+
+  <rect x="605" y="290" width="165" height="46" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="635" y="318" fill="#f8fafc" font-family="'Inter', sans-serif" font-weight="600" font-size="14">Track a Report</text>
+
+  <!-- How It Works Cards -->
+  <g transform="translate(100, 390)">
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="225" height="230" rx="12" fill="url(#card-grad)" stroke="#1e293b" stroke-width="1"/>
+    <rect x="20" y="20" width="36" height="36" rx="8" fill="#2563eb" fill-opacity="0.2"/>
+    <text x="32" y="44" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="700" font-size="14">01</text>
+    <text x="20" y="85" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="700" font-size="16">Submit</text>
+    <text x="20" y="110" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="500" font-size="13">Describe concern</text>
+    <text x="20" y="140" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="12" width="180">
+      <tspan x="20" dy="0">Select category, enter</tspan>
+      <tspan x="20" dy="18">details, add optional</tspan>
+      <tspan x="20" dy="18">evidence. Zero ID.</tspan>
+    </text>
+
+    <!-- Step 2 -->
+    <rect x="255" y="0" width="225" height="230" rx="12" fill="url(#card-grad)" stroke="#1e293b" stroke-width="1"/>
+    <rect x="275" y="20" width="36" height="36" rx="8" fill="#10b981" fill-opacity="0.2"/>
+    <text x="287" y="44" fill="#10b981" font-family="'Inter', sans-serif" font-weight="700" font-size="14">02</text>
+    <text x="275" y="85" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="700" font-size="16">Receive</text>
+    <text x="275" y="110" fill="#10b981" font-family="'Inter', sans-serif" font-weight="500" font-size="13">Get secure case code</text>
+    <text x="275" y="140" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="12">
+      <tspan x="275" dy="0">Cryptographically safe</tspan>
+      <tspan x="275" dy="18">code generated (e.g.</tspan>
+      <tspan x="275" dy="18">WD-K7M4P9X2).</tspan>
+    </text>
+
+    <!-- Step 3 -->
+    <rect x="510" y="0" width="225" height="230" rx="12" fill="url(#card-grad)" stroke="#1e293b" stroke-width="1"/>
+    <rect x="530" y="20" width="36" height="36" rx="8" fill="#f59e0b" fill-opacity="0.2"/>
+    <text x="542" y="44" fill="#f59e0b" font-family="'Inter', sans-serif" font-weight="700" font-size="14">03</text>
+    <text x="530" y="85" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="700" font-size="16">Track</text>
+    <text x="530" y="110" fill="#f59e0b" font-family="'Inter', sans-serif" font-weight="500" font-size="13">Check progress</text>
+    <text x="530" y="140" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="12">
+      <tspan x="530" dy="0">Track live review status</tspan>
+      <tspan x="530" dy="18">using your secure case</tspan>
+      <tspan x="530" dy="18">code at any time.</tspan>
+    </text>
+
+    <!-- Step 4 -->
+    <rect x="765" y="0" width="225" height="230" rx="12" fill="url(#card-grad)" stroke="#1e293b" stroke-width="1"/>
+    <rect x="785" y="20" width="36" height="36" rx="8" fill="#8b5cf6" fill-opacity="0.2"/>
+    <text x="797" y="44" fill="#8b5cf6" font-family="'Inter', sans-serif" font-weight="700" font-size="14">04</text>
+    <text x="785" y="85" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="700" font-size="16">Updates</text>
+    <text x="785" y="110" fill="#8b5cf6" font-family="'Inter', sans-serif" font-weight="500" font-size="13">Read moderator notes</text>
+    <text x="785" y="140" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="12">
+      <tspan x="785" dy="0">View full status timeline</tspan>
+      <tspan x="785" dy="18">and official responses</tspan>
+      <tspan x="785" dy="18">with zero identity leak.</tspan>
+    </text>
+  </g>
+</svg>
