@@ -63,6 +63,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- PostgreSQL for the Render production database -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- JWT for Stateless Moderator Authentication -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

@@ -11,7 +11,9 @@ import {
   StatusUpdatePayload
 } from '../types';
 
-const API_BASE_URL = '/api';
+// Local Vite development uses /api through its proxy. Production uses the
+// deployed backend URL supplied by Vercel as VITE_API_BASE_URL.
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 
 export class ApiError extends Error {
   public status: number;
