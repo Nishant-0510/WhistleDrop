@@ -119,25 +119,18 @@ export const TrackReportPage: React.FC = () => {
           </button>
         </form>
 
+        {errorMessage && (
+          <div role="alert" className="mt-3 p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3 text-sm animate-fade-in">
+            <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+            <div><span className="font-bold">Tracking Notice: </span>{errorMessage}</div>
+          </div>
+        )}
+
         <div className="mt-3 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <span>Format: <code className="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">WD-XXXXXXXX</code></span>
           <PrivacyBadge variant="key-based" />
         </div>
       </div>
-
-      {/* Error / Not Found Message */}
-      {errorMessage && (
-        <div
-          role="alert"
-          className="p-5 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3.5 text-sm animate-fade-in"
-        >
-          <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <span className="font-bold">Tracking Notice</span>
-            <p className="leading-relaxed">{errorMessage}</p>
-          </div>
-        </div>
-      )}
 
       {/* Loading State */}
       {isLoading && (

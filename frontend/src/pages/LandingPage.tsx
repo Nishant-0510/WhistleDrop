@@ -1,220 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  ShieldCheck,
-  Lock,
-  Search,
-  PlusCircle,
-  FileCheck2,
-  KeyRound,
-  EyeOff,
-  ArrowRight,
-  Sparkles,
-  History
-} from 'lucide-react';
+import { ArrowRight, Check, EyeOff, FileCheck2, KeyRound, Lock, PlusCircle, Search, ShieldCheck, Sparkles, History } from 'lucide-react';
 import { PrivacyBadge } from '../components/PrivacyBadge';
 
-export const LandingPage: React.FC = () => {
-  const steps = [
-    {
-      num: '01',
-      title: 'Submit',
-      subtitle: 'Describe the concern.',
-      description: 'Choose a category, explain the issue in detail, and optionally provide supporting evidence links. No personal details are ever collected.',
-      icon: PlusCircle,
-    },
-    {
-      num: '02',
-      title: 'Receive',
-      subtitle: 'Get a secure case code.',
-      description: 'Our backend generates an unpredictable, cryptographically random tracking key (e.g. WD-K7M4P9X2) stored with database-level uniqueness.',
-      icon: KeyRound,
-    },
-    {
-      num: '03',
-      title: 'Track',
-      subtitle: 'Check the progress of your report.',
-      description: 'Enter your case code anytime on our public portal to inspect the real-time review status without revealing who you are.',
-      icon: Search,
-    },
-    {
-      num: '04',
-      title: 'Updates',
-      subtitle: 'View status updates without revealing your identity.',
-      description: 'Read timestamped feedback, questions, and resolution notices from authorized moderators directly on your timeline.',
-      icon: History,
-    },
-  ];
+const steps = [
+  { num: '01', title: 'Share the concern', description: 'Choose a category and describe what happened. No account or personal profile is required.', icon: PlusCircle },
+  { num: '02', title: 'Save your code', description: 'Receive a private, unpredictable case code. It is the only key you need.', icon: KeyRound },
+  { num: '03', title: 'Follow the review', description: 'Use your case code to check status and read updates whenever you need.', icon: Search },
+];
+const pillars = [
+  { icon: EyeOff, title: 'Anonymous by default', description: 'No email, phone number, or reporter account is needed.' },
+  { icon: KeyRound, title: 'Private case access', description: 'Your case code gives you control without exposing identity.' },
+  { icon: FileCheck2, title: 'Clear progress', description: 'See timestamped updates as your concern moves forward.' },
+];
 
-  const pillars = [
-    {
-      icon: EyeOff,
-      title: 'No Reporter Account',
-      description: 'No email, phone, name, or profile registration. Your identity is fundamentally absent from our data schema.',
-    },
-    {
-      icon: KeyRound,
-      title: 'Secure Case Code',
-      description: 'Cryptographically generated case codes ensure high entropy, unguessable tracking keys, and full collision protection.',
-    },
-    {
-      icon: FileCheck2,
-      title: 'Verified Triage Workflow',
-      description: 'Moderators review reports through protected interfaces with strict status transition controls and audit trails.',
-    },
-  ];
-
-  return (
-    <div className="space-y-24 py-8 sm:py-16">
-      {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-8 animate-fade-in">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 dark:bg-brand-950/60 dark:border-brand-800 dark:text-brand-300 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-          <span>Confidential Reporting Platform</span>
+export const LandingPage: React.FC = () => (
+  <div className="overflow-hidden">
+    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 sm:pt-20 sm:pb-28">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.14),transparent_65%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.17),transparent_65%)]" />
+      <div className="grid lg:grid-cols-[1.08fr_.92fr] gap-12 lg:gap-16 items-center">
+        <div className="max-w-2xl animate-fade-in">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/75 px-3.5 py-1.5 text-xs font-bold text-brand-700 shadow-sm backdrop-blur dark:border-brand-800 dark:bg-brand-950/40 dark:text-brand-300"><Sparkles className="h-3.5 w-3.5" /> Confidential reporting, made human</div>
+          <h1 className="mt-6 text-4xl font-black tracking-[-0.055em] text-slate-950 sm:text-6xl lg:text-7xl dark:text-white">Speak up.<br /><span className="text-brand-600 dark:text-brand-400">Stay protected.</span></h1>
+          <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg dark:text-slate-300">WhistleDrop gives you a simple, safe way to report concerns and follow what happens next — without creating an account or revealing who you are.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link to="/submit" className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"><PlusCircle className="h-5 w-5" /> Report a concern <ArrowRight className="h-4 w-4" /></Link><Link to="/track" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"><Search className="h-5 w-5 text-brand-600" /> Track a report</Link></div>
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-slate-600 dark:text-slate-300"><span className="inline-flex items-center gap-2"><Lock className="h-4 w-4 text-brand-600" /> No account required</span><span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-brand-600" /> Identity not collected</span></div>
         </div>
-
-        <div className="space-y-4">
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-            <span className="block">WHISTLEDROP</span>
-            <span className="block text-2xl sm:text-4xl font-bold text-slate-600 dark:text-slate-300 mt-2">
-              "Your voice. Your privacy."
-            </span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            A confidential reporting platform that lets you raise concerns without creating an account or revealing your identity.
-          </p>
-        </div>
-
-        {/* Primary and Secondary CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <Link
-            to="/submit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 active:scale-[0.98] transition-all"
-          >
-            <PlusCircle className="w-5 h-5" />
-            <span>Report a Concern</span>
-          </Link>
-          <Link
-            to="/track"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 dark:text-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-slate-700 shadow-sm active:scale-[0.98] transition-all"
-          >
-            <Search className="w-5 h-5 text-slate-500" />
-            <span>Track a Report</span>
-          </Link>
-        </div>
-
-        {/* Privacy statement banner */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-1.5 font-medium">
-            <Lock className="w-4 h-4 text-emerald-500" />
-            <span>No account required. No reporter profile. Just your case code.</span>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-          <PrivacyBadge variant="anonymous" />
-          <PrivacyBadge variant="no-account" />
-          <PrivacyBadge variant="key-based" />
-        </div>
-      </section>
-
-      {/* How it works section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-3 mb-12">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
-            Transparent Workflow
-          </h2>
-          <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            How It Works
-          </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
-            From initial submission to resolution, complete privacy is maintained at every step.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={step.num}
-                className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-black font-mono text-slate-300 dark:text-slate-700 group-hover:text-brand-500 transition-colors">
-                      {step.num}
-                    </span>
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 group-hover:bg-brand-50 dark:group-hover:bg-brand-950/50 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
-                    {step.subtitle}
-                  </p>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Security & Architectural Guarantees */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-slate-900 via-slate-850 to-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden shadow-xl">
-          <div className="max-w-2xl relative z-10 space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold">
-              <ShieldCheck className="w-4 h-4 text-brand-400" />
-              <span>Architectural Privacy Principles</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-              Anonymity by architecture, not just policy.
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              WhistleDrop was engineered with deliberate data minimization. The application backend does not store reporter profiles, email addresses, or session trackers. Case codes are 64-bit entropy identifiers that guarantee unguessability.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              {pillars.map((pillar, i) => {
-                const PillarIcon = pillar.icon;
-                return (
-                  <div key={i} className="bg-slate-800/60 backdrop-blur-sm p-4 rounded-xl border border-slate-700/60">
-                    <PillarIcon className="w-5 h-5 text-brand-400 mb-2" />
-                    <h3 className="font-bold text-sm text-white mb-1">{pillar.title}</h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">{pillar.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ready to report CTA banner */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
-        <div className="bg-brand-50 dark:bg-brand-950/40 border border-brand-200 dark:border-brand-900/60 rounded-2xl p-8 space-y-4">
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-            Have a concern to raise confidentially?
-          </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
-            Submissions take less than 2 minutes. You will receive an encrypted case code to monitor actions taken.
-          </p>
-          <div className="pt-2">
-            <Link
-              to="/submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition-all"
-            >
-              <span>Begin Anonymous Report</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none animate-slide-up"><div className="absolute -inset-5 rounded-[2rem] bg-brand-400/15 blur-3xl" /><div className="relative rounded-3xl border border-white/80 bg-white/90 p-5 shadow-2xl shadow-slate-900/10 backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 sm:p-7"><div className="flex items-start justify-between"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">Your private path</p><h2 className="mt-2 text-xl font-extrabold text-slate-900 dark:text-white">Protected at every step</h2></div><div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><ShieldCheck className="h-6 w-6" /></div></div><div className="mt-7 space-y-4">{['Share only what matters', 'Keep your unique case code', 'Check for updates anytime'].map((item, index) => <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 p-3.5 dark:border-slate-800 dark:bg-slate-950/50"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-black text-white">{index + 1}</span><span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{item}</span><Check className="ml-auto h-4 w-4 text-brand-600" /></div>)}</div><div className="mt-6 rounded-2xl bg-slate-900 p-4 text-slate-100 dark:bg-slate-800"><div className="flex items-center gap-2 text-xs font-bold text-brand-300"><History className="h-4 w-4" /> CASE STATUS</div><div className="mt-2 flex items-center justify-between"><span className="font-mono text-sm tracking-wider">WD-••••••••</span><span className="rounded-full bg-brand-500/20 px-2.5 py-1 text-xs font-bold text-brand-300">Private</span></div></div></div></div>
+      </div>
+    </section>
+    <section className="border-y border-slate-200/80 bg-white/65 py-16 dark:border-slate-800 dark:bg-slate-900/30 sm:py-20"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="max-w-xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">Simple by design</p><h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl dark:text-white">A clear route from concern to progress.</h2></div><div className="mt-10 grid gap-4 md:grid-cols-3">{steps.map((step) => { const Icon = step.icon; return <div key={step.num} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-600/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-brand-800"><div className="flex items-center justify-between"><span className="font-mono text-sm font-bold text-brand-600 dark:text-brand-400">{step.num}</span><div className="rounded-xl bg-brand-50 p-2.5 text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950 dark:text-brand-300"><Icon className="h-5 w-5" /></div></div><h3 className="mt-8 text-lg font-extrabold text-slate-900 dark:text-white">{step.title}</h3><p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{step.description}</p></div>; })}</div></div></section>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24"><div className="rounded-3xl bg-slate-950 px-6 py-10 text-white shadow-xl sm:px-10 sm:py-14 lg:px-14"><div className="max-w-2xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-400">Built around privacy</p><h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Your identity should never be the cost of speaking up.</h2><p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">We minimize data from the start, so you can concentrate on the concern — not on creating a profile or protecting personal information.</p></div><div className="mt-10 grid gap-4 md:grid-cols-3">{pillars.map((pillar) => { const Icon = pillar.icon; return <div key={pillar.title} className="rounded-2xl border border-white/10 bg-white/5 p-5"><Icon className="h-5 w-5 text-brand-400" /><h3 className="mt-4 font-bold">{pillar.title}</h3><p className="mt-2 text-sm leading-6 text-slate-300">{pillar.description}</p></div>; })}</div><div className="mt-9 flex flex-wrap gap-2"><PrivacyBadge variant="anonymous" /><PrivacyBadge variant="no-account" /><PrivacyBadge variant="key-based" /></div></div></section>
+  </div>
+);

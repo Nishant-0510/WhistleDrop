@@ -196,20 +196,6 @@ export const SubmitReportPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Error alert */}
-      {errorMessage && (
-        <div
-          role="alert"
-          className="mb-6 p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3 text-sm animate-fade-in"
-        >
-          <AlertCircle className="w-5 h-5 shrink-0 text-rose-500 mt-0.5" />
-          <div>
-            <span className="font-semibold">Validation Notice: </span>
-            {errorMessage}
-          </div>
-        </div>
-      )}
-
       {/* Step Contents */}
       <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
         {/* STEP 1: CATEGORY SELECTION */}
@@ -376,6 +362,14 @@ export const SubmitReportPage: React.FC = () => {
                 Upon submission, a cryptographically secure tracking case code will be generated. You must save that code to view status updates.
               </p>
             </div>
+          </div>
+        )}
+
+        {/* Error alert — kept beside the action controls */}
+        {errorMessage && (
+          <div role="alert" className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3 text-sm animate-fade-in">
+            <AlertCircle className="w-5 h-5 shrink-0 text-rose-500 mt-0.5" />
+            <div><span className="font-semibold">Validation Notice: </span>{errorMessage}</div>
           </div>
         )}
 

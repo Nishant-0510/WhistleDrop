@@ -13,16 +13,16 @@ export const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200/70 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo & Tagline */}
           <Link to="/" className="flex items-center gap-3 group focus-visible:rounded-lg">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-sm shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-800 via-brand-600 to-sky-400 flex items-center justify-center text-white shadow-lg shadow-brand-600/25 group-hover:scale-105 transition-transform">
               <Shield className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span className="font-extrabold text-lg sm:text-xl tracking-[-0.04em] text-slate-900 dark:text-white flex items-center gap-1.5">
                 WHISTLEDROP
               </span>
               <span className="hidden sm:block text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-none">

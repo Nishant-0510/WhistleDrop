@@ -74,19 +74,6 @@ export const ModeratorLoginPage: React.FC = () => {
 
         {/* Login Form Container */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
-          {errorMessage && (
-            <div
-              role="alert"
-              className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3 text-xs sm:text-sm animate-fade-in"
-            >
-              <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-semibold">Authentication Error: </span>
-                {errorMessage}
-              </div>
-            </div>
-          )}
-
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Username Input */}
             <div className="space-y-1.5">
@@ -135,6 +122,13 @@ export const ModeratorLoginPage: React.FC = () => {
                 />
               </div>
             </div>
+
+            {errorMessage && (
+              <div role="alert" className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 flex items-start gap-3 text-xs sm:text-sm animate-fade-in">
+                <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                <div><span className="font-semibold">Authentication Error: </span>{errorMessage}</div>
+              </div>
+            )}
 
             <button
               type="submit"
