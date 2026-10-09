@@ -27,13 +27,14 @@ A glimpse of WhistleDrop's user interface and core functionality.
 
 <!-- Add your 3–4 actual screenshots to the screenshots/ folder and replace the filenames below. -->
 
-![WhistleDrop Landing Page](screenshots/landing-page.png)
+<img width="1896" height="900" alt="image" src="https://github.com/user-attachments/assets/f62081e3-71d5-4215-bfdf-b50ae449b848" />
 
-![Anonymous Report Submission](screenshots/report-submission.png)
+<img width="1904" height="909" alt="image" src="https://github.com/user-attachments/assets/522a5ae2-564c-4627-9125-f88da101a359" />
 
-![Report Tracking Portal](screenshots/report-tracking.png)
+<img width="1906" height="900" alt="image" src="https://github.com/user-attachments/assets/a533281d-9dcc-40a8-ad83-b3f4e8299625" />
 
-![Moderator Dashboard](screenshots/moderator-dashboard.png)
+<img width="1913" height="906" alt="image" src="https://github.com/user-attachments/assets/704f537b-07fa-49b8-bcb4-ffde0f8eceab" />
+
 
 ---
 
